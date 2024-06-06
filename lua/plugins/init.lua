@@ -236,4 +236,13 @@ return {
     },
   },
 
+  -- instant markdown table creation
+  -- {
+  --   "dhruvasagar/vim-table-mode",
+  -- }
+
+  {
+    "junegunn/vim-easy-align"
+  },
+
 }
