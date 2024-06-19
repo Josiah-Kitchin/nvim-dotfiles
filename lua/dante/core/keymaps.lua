@@ -107,3 +107,6 @@ end
 keymap.set("n", "<c-cr>", send_cell)
 keymap.set("i", "<c-cr>", send_cell)
 
+-- exit terminal mode with ESC
+keymap.set("t", "<ESC>", "<C-\\><C-n>", {desc = "exit term"})
+
