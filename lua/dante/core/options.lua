@@ -37,3 +37,9 @@ opt.splitbelow = true
 
 -- scrolloff (how many lines kept above and below cursor)
 opt.scrolloff = 20
+
+-- disable line numbers in terminal mode
+vim.api.nvim_create_autocmd({"TermOpen"}, {
+  pattern = {"*"},
+  command = "setlocal nonumber norelativenumber",
+})
