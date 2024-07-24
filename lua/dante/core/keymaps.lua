@@ -24,6 +24,8 @@ keymap.set("n", "<leader>wx", "<cmd>close<CR>", { desc = "close split" })
 keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
 keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 keymap.set("n", "<leader>bi", "<cmd>ls<CR>", { desc = "List buffers interactively" })
+keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Delete current buffer" })
+keymap.set("n", "<leader>bk", "<cmd>bw<CR>", { desc = "Wipeout (really) delete current buffer" })
 
 -- tab navigation
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
@@ -109,4 +111,7 @@ keymap.set("i", "<c-cr>", send_cell)
 
 -- exit terminal mode with ESC
 keymap.set("t", "<ESC>", "<C-\\><C-n>", {desc = "exit term"})
+keymap.set("t", "<jk>", "<C-\\><C-n>", {desc = "exit term"})
 
+keymap.set("n", "ga", "<Plug>(EasyAlign)", {desc = "align text"})
+keymap.set("i", "ga", "<Plug>(EasyAlign)", {desc = "align text"})
