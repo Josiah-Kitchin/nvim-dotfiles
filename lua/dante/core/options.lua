@@ -43,3 +43,6 @@ vim.api.nvim_create_autocmd({"TermOpen"}, {
   pattern = {"*"},
   command = "setlocal nonumber norelativenumber",
 })
+
+-- set colored column at character 80
+vim.opt.colorcolumn = "80"
