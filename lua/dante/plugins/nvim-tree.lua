@@ -46,6 +46,10 @@ return {
       git = {
         ignore = false,
       },
+      -- follow open files/buffers?
+      update_focused_file = {
+        enable = true,
+      }
     })
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
