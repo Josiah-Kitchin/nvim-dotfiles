@@ -5,4 +5,6 @@ return {
     priority = 1000,
     config = true,
   },
+  {"tpope/vim-fugitive"},
+  {"junegunn/vim-easy-align"}
 }
