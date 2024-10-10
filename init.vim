@@ -22,19 +22,46 @@ call plug#begin()
     Plug 'https://github.com/lewis6991/gitsigns.nvim'
     Plug 'https://github.com/akinsho/toggleterm.nvim'
     Plug 'https://github.com/akinsho/bufferline.nvim'
+    Plug 'https://github.com/nvim-tree/nvim-tree.lua'
 call plug#end()
-
 
 
 lua require('lualine_config'); 
 lua require('treesitter_config'); 
 lua require('neoscroller_config'); 
 lua require('modicator_config'); 
-lua require('neotree_config'); 
+"lua require('neotree_config'); 
 lua require('autoclose').setup(); 
 lua require('gitsigns').setup()
 lua require("toggleterm").setup(); 
-lua require("bufferline").setup{}
+"lua require("bufferline").setup{};
+
+lua << EOF
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort = {
+    sorter = "case_sensitive",
+  },
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+EOF
 
 
 colorscheme dracula 
@@ -60,14 +87,25 @@ lua << EOF
 local function open_current_directory()
   local args = vim.fn.argv()
   if #args == 0 then
-    vim.cmd("silent! lcd " .. vim.fn.getcwd())
-    vim.cmd("Explore")  -- or "Neotree" if you prefer Neotree
+    vim.cmd("NvimTreeOpen")
   end
 end
 
 -- Autocommand to trigger the function when starting Neovim
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = open_current_directory,
+})
+
+
+vim.api.nvim_create_autocmd({"BufNewFile", "BufReadPost"}, {
+  callback = function(args)
+    if vim.fn.expand "%:p" ~= "" then
+
+      vim.api.nvim_del_autocmd(args.id)
+      vim.cmd "noautocmd NvimTreeOpen"
+      vim.cmd "noautocmd wincmd p"
+    end
+  end,
 })
 
 
@@ -83,7 +121,7 @@ vim.o.termguicolors = true
 vim.o.relativenumber = true
 vim.opt.splitkeep = "screen"
 
-vim.keymap.set('n', '<C-j>', '<Cmd>Neotree float<CR>')
+vim.keymap.set('n', '<C-j>', '<Cmd>NvimTreeOpen<CR>')
 vim.keymap.set('n', '<C-b>', '<Cmd>ToggleTerm<CR>')
 vim.keymap.set('n', '<C-h>', '<Cmd>wincmd w<CR>')
 vim.keymap.set('n', '<C-u>', '<Cmd>BufferLinePick<CR>')
