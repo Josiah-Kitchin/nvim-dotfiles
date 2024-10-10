@@ -20,6 +20,8 @@ call plug#begin()
     Plug 'https://github.com/Mofiqul/dracula.nvim'
     Plug 'https://github.com/m4xshen/autoclose.nvim'
     Plug 'https://github.com/lewis6991/gitsigns.nvim'
+    Plug 'https://github.com/akinsho/toggleterm.nvim'
+    Plug 'https://github.com/akinsho/bufferline.nvim'
 call plug#end()
 
 
@@ -31,6 +33,8 @@ lua require('modicator_config');
 lua require('neotree_config'); 
 lua require('autoclose').setup(); 
 lua require('gitsigns').setup()
+lua require("toggleterm").setup(); 
+lua require("bufferline").setup{}
 
 
 colorscheme dracula 
@@ -77,8 +81,14 @@ vim.o.cursorline = true
 vim.o.number = true
 vim.o.termguicolors = true
 vim.o.relativenumber = true
+vim.opt.splitkeep = "screen"
 
-vim.keymap.set('n', '<C-j>', '<Cmd>Neotree reveal<CR>')
+vim.keymap.set('n', '<C-j>', '<Cmd>Neotree float<CR>')
+vim.keymap.set('n', '<C-b>', '<Cmd>ToggleTerm<CR>')
+vim.keymap.set('n', '<C-h>', '<Cmd>wincmd w<CR>')
+vim.keymap.set('n', '<C-u>', '<Cmd>BufferLinePick<CR>')
+vim.keymap.set('n', '<C-i>', '<Cmd>BufferLinePickClose<CR>')
+
 
 EOF
 
