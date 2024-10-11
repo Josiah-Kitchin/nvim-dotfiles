@@ -30,11 +30,16 @@ lua require('lualine_config');
 lua require('treesitter_config'); 
 lua require('neoscroller_config'); 
 lua require('modicator_config'); 
-"lua require('neotree_config'); 
 lua require('autoclose').setup(); 
 lua require('gitsigns').setup()
 lua require("toggleterm").setup(); 
 "lua require("bufferline").setup{};
+
+"transparent background
+augroup user_colors
+  autocmd!
+  autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+augroup END
 
 lua << EOF
 -- disable netrw at the very start of your init.lua
@@ -47,7 +52,7 @@ vim.opt.termguicolors = true
 -- empty setup using defaults
 
 -- OR setup with some options
-require("nvim-tree").setup({
+require("nvim-tree").setup{
   sort = {
     sorter = "case_sensitive",
   },
@@ -60,9 +65,10 @@ require("nvim-tree").setup({
   filters = {
     dotfiles = true,
   },
-})
-EOF
+}
 
+
+EOF
 
 colorscheme dracula 
 
@@ -103,7 +109,6 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufReadPost"}, {
 
       vim.api.nvim_del_autocmd(args.id)
       vim.cmd "noautocmd NvimTreeOpen"
-      vim.cmd "noautocmd wincmd p"
     end
   end,
 })
