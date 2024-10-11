@@ -13,21 +13,23 @@ return {
     treesitter.setup({
       highlight = {
         enable = true,
+        disable = { "latex" },
+        additional_vim_regex_highlighting = { "markdown" },
       },
       indent = { enable = true },
-      autotag = { enabel= true },
+      autotag = { enable= true },
       --ensure these language parsers are installed
       ensure_installed = {
         "bash",
-        "bibtex",
+        -- "bibtex",
         "c",
         "css",
         "csv",
         "julia",
-        "latex",
         "lua",
         "markdown_inline",
         "norg",
+        "org",
         "r",
         "vim",
         "vimdoc",

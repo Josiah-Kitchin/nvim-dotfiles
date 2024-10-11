@@ -21,9 +21,9 @@ return {
         ["core.dirman"] = {
           config = {
             workspaces = {
-              Org = "~/Neorg",
+              home = "~/Personal"
             },
-            default_workspace = "Org",
+            default_workspace = "home",
           },
         },
       },

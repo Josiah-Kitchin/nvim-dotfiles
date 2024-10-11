@@ -35,14 +35,8 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
--- scrolloff (how many lines kept above and below cursor)
-opt.scrolloff = 20
-
--- disable line numbers in terminal mode
+-- disable line numbers on terminal windows 
 vim.api.nvim_create_autocmd({"TermOpen"}, {
   pattern = {"*"},
   command = "setlocal nonumber norelativenumber",
 })
-
--- set colored column at character 80
-vim.opt.colorcolumn = "80"
