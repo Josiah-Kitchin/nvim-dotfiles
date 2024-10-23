@@ -6,6 +6,14 @@ local colors = require("tokyonight.colors").setup()
 custom_theme.normal.c.bg = colors.bg_light
 custom_theme.inactive.c.bg = colors.bg_light
 custom_theme.inactive.c.fg = colors.bg_light
+
+custom_theme.normal.b.bg = "#30f0c1c"
+custom_theme.inactive.b.bg = "#30f0c1c"
+custom_theme.command.b.bg = "#30f0c1c"
+custom_theme.insert.b.bg = "#30f0c1c"
+custom_theme.replace.b.bg = "#30f0c1c"
+custom_theme.visual.b.bg = "#30f0c1c"
+
 --
 -- custom_theme.normal.a.bg = colors.cyan
 -- custom_theme.insert.a.bg = colors.blue
