@@ -33,6 +33,7 @@ call plug#begin()
     Plug 'Almo7aya/neogruvbox.nvim', { 'branch': 'master' }
 
 
+
     
 
 
@@ -65,7 +66,9 @@ lua << EOF
 
 EOF
 
-colorscheme gruvbox-material
+let g:gruvbox_material_background = 'hard'
+colorscheme gruvbox-material  
+
 set clipboard=unnamedplus
 set shiftwidth=4
 set laststatus=3
