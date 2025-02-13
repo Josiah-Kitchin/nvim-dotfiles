@@ -1,7 +1,7 @@
 :tnoremap <C-j> <C-\><C-n>
 
 
-call plug#begin() 
+call plug#begin()
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     Plug 'nvim-tree/nvim-web-devicons'
@@ -26,23 +26,33 @@ call plug#begin()
 
     Plug 'https://github.com/sainnhe/gruvbox-material'
 
+    Plug 'mhartington/formatter.nvim'
+
+    Plug 'https://github.com/nvim-telescope/telescope-file-browser.nvim'
+
+    Plug 'Almo7aya/neogruvbox.nvim', { 'branch': 'master' }
+
+
+    
+
+
 
 call plug#end()
-
 
 lua << EOF
 
 --Plugins
 
-    --custom 
-    require('lualine_config'); 
-    require('treesitter_config'); 
-    require('modicator_config'); 
-    require('tree')
-    --
+    --custom
+    require('lualine_config');
+    require('treesitter_config');
+    require('modicator_config');
+    require('tree_config');
+    require('format_config');
+    require('telescope_config');
 
-    --default 
-    require('autoclose').setup(); 
+    --default
+    require('autoclose').setup();
     require('gitsigns').setup();
 
 --Settings
@@ -50,9 +60,12 @@ lua << EOF
     require('keymappings')
 
 
+
+
+
 EOF
 
-colorscheme gruvbox-material 
+colorscheme gruvbox-material
 set clipboard=unnamedplus
 set shiftwidth=4
 set laststatus=3
