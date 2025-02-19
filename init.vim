@@ -32,11 +32,16 @@ call plug#begin()
 
     Plug 'Almo7aya/neogruvbox.nvim', { 'branch': 'master' }
 
-
-
+    Plug 'https://github.com/Mofiqul/vscode.nvim'
     
 
+    Plug 'https://github.com/f4z3r/gruvbox-material.nvim'
+    
+    Plug 'https://github.com/ellisonleao/gruvbox.nvim'
+    
 
+    
+    
 
 call plug#end()
 
@@ -60,14 +65,22 @@ lua << EOF
     require('settings')
     require('keymappings')
 
-
-
-
-
+    require("gruvbox").setup({
+      bold = false,
+     palette_overrides = {
+        bright_green = "#8EC07C",
+      },
+      overrides = {
+          SignColumn = {bg = "#282828"}, 
+          ["@string"] = {fg = "#B8BB26"},
+      },
+    })
 EOF
 
-let g:gruvbox_material_background = 'hard'
-colorscheme gruvbox-material  
+
+
+colorscheme gruvbox
+
 
 set clipboard=unnamedplus
 set shiftwidth=4
