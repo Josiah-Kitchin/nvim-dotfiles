@@ -1,6 +1,6 @@
 
 
-vim.o.cursorline = true
+-- vim.o.cursorline = true
 vim.o.number = true
 vim.o.termguicolors = true
 vim.o.relativenumber = true

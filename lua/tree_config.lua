@@ -6,6 +6,8 @@ require("nvim-tree").setup{
   },
   view = {
     width = 30,
+    side = "right",
+    -- signcolumn = "no",
   },
   renderer = {
     group_empty = true,

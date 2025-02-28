@@ -31,13 +31,9 @@ call plug#begin()
     Plug 'https://github.com/nvim-telescope/telescope-file-browser.nvim'
 
     Plug 'Almo7aya/neogruvbox.nvim', { 'branch': 'master' }
-
-    Plug 'https://github.com/Mofiqul/vscode.nvim'
     
+    Plug 'https://github.com/catppuccin/nvim'
 
-    Plug 'https://github.com/f4z3r/gruvbox-material.nvim'
-    
-    Plug 'https://github.com/ellisonleao/gruvbox.nvim'
     
 
     
@@ -65,26 +61,29 @@ lua << EOF
     require('settings')
     require('keymappings')
 
-    require("gruvbox").setup({
-      bold = false,
-     palette_overrides = {
-        bright_green = "#8EC07C",
-      },
-      overrides = {
-          SignColumn = {bg = "#282828"}, 
-          ["@string"] = {fg = "#B8BB26"},
-      },
+    require('catppuccin').setup({
+
+     transparent_background = true,
+     no_italic = true, --
+
     })
+
+
+
 EOF
 
 
-
-colorscheme gruvbox
-
+colorscheme catppuccin
 
 set clipboard=unnamedplus
 set shiftwidth=4
 set laststatus=3
+
+highlight CursorLine guibg=#1F1E1E ctermbg=235
+set cursorline
+set guicursor=""
+
+
 
 inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
 inoremap <silent><expr> <cr> "\<c-g>u\<CR>"

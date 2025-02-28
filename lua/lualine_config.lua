@@ -1,6 +1,6 @@
 
 
-local custom_gruvbox = require'lualine.themes.gruvbox'
+local custom_gruvbox = require'lualine.themes.catppuccin'
 custom_gruvbox = {
   normal = {
     c = { bg = "None"},
