@@ -14,9 +14,10 @@ return {
     nvimtree.setup({
       view = {
         width = {
-          min = 10,
-          max = 40,
+          min = 30,
+          max = 30,
         },
+        side = "right",
         number = false,
         -- float = { enable = true },
         -- relativenumber = true,
@@ -40,6 +41,7 @@ return {
       -- window splits
       actions = {
         open_file = {
+          quit_on_open = true,
           window_picker = {
             enable = false,
           },

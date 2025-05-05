@@ -1,15 +1,17 @@
 return {
-  "rebelot/kanagawa.nvim",
-  priority = 1000,
-  config = function()
-    require("kanagawa").setup({
-      theme = "wave",              -- Load "wave" theme when 'background' option is not set
-      background = {               -- map the value of 'background' option to a theme
-          dark = "wave",           -- try "dragon" !
-          light = "lotus"
-      },
-    })
-
-    vim.cmd("colorscheme kanagawa")
-  end
+  {
+    'https://github.com/catppuccin/nvim',
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.opt.termguicolors = true
+      require("catppuccin").setup({
+        flavour = "mocha", -- or "macchiato", "frappe", "latte"
+        transparent_background = true,
+      })
+      vim.cmd.colorscheme("catppuccin")
+    end,
+  }
 }
+

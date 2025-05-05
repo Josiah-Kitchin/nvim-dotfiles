@@ -6,12 +6,13 @@ opt.relativenumber = true
 opt.number = true
 
 --tabs and indents
-opt.tabstop = 2
-opt.shiftwidth = 2
+opt.tabstop = 4
+opt.shiftwidth = 4
 opt.expandtab = true --expand tab to spaces
 opt.autoindent = true -- repeat indent on new line
+vim.o.guicursor = ""
 
-opt.wrap = false
+opt.wrap = true
 
 --search settings
 opt.ignorecase = true
@@ -22,7 +23,6 @@ opt.cursorline = true
 
 -- turn on termguicolors for colorscheme to work
 opt.termguicolors = true
-opt.background = "dark"
 opt.signcolumn = "yes"
 
 -- backspace on indent, end of line, or insert start position
