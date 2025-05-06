@@ -2,7 +2,7 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    "catppuccin/nvim",
+    "gruvbox-material",
   },
   config = function()
     local lualine = require("lualine")
@@ -11,7 +11,7 @@ return {
     -- Use the official Catppuccin theme
     lualine.setup({
       options = {
-        theme = "catppuccin", -- this uses the installed Catppuccin theme
+        theme = "gruvbox-material", -- this uses the installed Catppuccin theme
       },
       sections = {
         lualine_x = {
