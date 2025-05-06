@@ -1,0 +1,1 @@
+require('josiah/plugins')

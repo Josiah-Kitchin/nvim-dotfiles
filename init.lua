@@ -1,3 +1,3 @@
-require("dante.core")
-require("dante.lazy")
+require("josiah.core")
+require("josiah.lazy")
 
