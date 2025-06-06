@@ -2,16 +2,16 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    "gruvbox-material",
   },
   config = function()
+
     local lualine = require("lualine")
     local lazy_status = require("lazy.status")
 
     -- Use the official Catppuccin theme
     lualine.setup({
       options = {
-        theme = "gruvbox-material", -- this uses the installed Catppuccin theme
+        theme = "auto", -- this uses the installed Catppuccin theme
       },
       sections = {
         lualine_x = {
@@ -28,4 +28,3 @@ return {
     })
   end,
 }
-

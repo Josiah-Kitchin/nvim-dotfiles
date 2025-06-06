@@ -1,17 +1,26 @@
 return {
   {
-    'https://github.com/sainnhe/gruvbox-material',
-    name = "gruvbox-material",
+    'https://github.com/Mofiqul/dracula.nvim',
+    name = "dracula",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.opt.termguicolors = true
-      -- require("catppuccin").setup({
-      --   flavour = "mocha", -- or "macchiato", "frappe", "latte"
-      --   transparent_background = true,
-      -- })
-      vim.cmd.colorscheme("gruvbox-material")
+      vim.opt.termguicolors = true,
+      vim.cmd.colorscheme("dracula")
     end,
   }
+
+  -- {
+  --   'https://github.com/f4z3r/gruvbox-material.nvim',
+  --   name = "gruvbox-material",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     vim.opt.termguicolors = true,
+  --     vim.cmd.colorscheme("gruvbox-material")
+  --   end,
+  -- }
+
+    
 }
 
