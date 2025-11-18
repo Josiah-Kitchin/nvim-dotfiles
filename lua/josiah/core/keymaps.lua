@@ -2,6 +2,14 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
+vim.api.nvim_create_user_command("FormatCpp", function()
+  vim.cmd("!clang-format -i %")
+  vim.cmd("edit!")  -- reload buffer
+end, { nargs = 0 })
+
+
+keymap.set("n", "<leader>z", "<cmd>FormatCpp<CR>", { desc = "Format C++ file with clang-format" })
+
 -- escape insert mode w/ jk
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode w/ jk" })
 
@@ -36,7 +44,7 @@ keymap.set("n", "ga", "<Plug>(EasyAlign)")
 -- keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "exit terminal" })
 
 -- toggle zen mode
-keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", {desc = "Toggle Zen Mode"})
+-- keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", {desc = "Toggle Zen Mode"})
 
 -- tree view
 keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
@@ -53,3 +61,8 @@ keymap.set("n", "<leader>fs", "<cmd>FzfLua live_grep<CR>", { desc = "Find string
 
 -- terminal
 keymap.set("n", "<leader>t", "<cmd>FloatermToggle<CR>", { desc = "Open floating terminal" })
+-- Normal mode toggle
+keymap.set("t", "<C-t>", "<C-\\><C-n><cmd>FloatermToggle<CR>", { desc = "Toggle terminal (terminal mode)" })
+
+
+

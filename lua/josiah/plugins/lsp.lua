@@ -1,87 +1,85 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "williamboman/mason.nvim", -- LSP server installer
-    "williamboman/mason-lspconfig.nvim", -- Automatically configure LSPs with Mason
-    "hrsh7th/nvim-cmp", -- Completion plugin
-    "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
   },
   config = function()
-    -- Setup Mason
+    -- Mason setup ------------------------------------------------------------
     require("mason").setup()
-
-    -- Setup Mason-LSPConfig to automatically configure LSP servers
     require("mason-lspconfig").setup({
-      ensure_installed = { "pyright", "ts_ls", "clangd", "omnisharp"},  -- Add the LSPs you need here
+      ensure_installed = { "pyright", "ts_ls", "clangd", "omnisharp", "cmake" },
     })
 
-    -- Setup LSPConfig
-    local lspconfig = require("lspconfig")
+    -- Common on_attach -------------------------------------------------------
+    local on_attach = function(_, bufnr)
+      local opts = { noremap = true, silent = true, buffer = bufnr }
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+      vim.keymap.set("n", "K",  vim.lsp.buf.hover, opts)
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+      vim.keymap.set("n", "<leader>o", vim.diagnostic.goto_next, opts)
+      vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
 
-    -- Function for common LSP keybindings
-    local on_attach = function(client, bufnr)
-      local bufopts = { noremap = true, silent = true, buffer = bufnr }
-      -- Set key mappings for LSP functions
-              -- LSP keymaps
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-
-      vim.keymap.set("n", "<leader>o", vim.diagnostic.goto_next, bufopts)
-      
       vim.o.updatetime = 500
-
       vim.api.nvim_create_autocmd("CursorHold", {
         buffer = bufnr,
         callback = function()
           vim.diagnostic.open_float(nil, { focusable = false })
         end,
       })
-
     end
 
-    -- Setup LSP servers (Pyright, TSServer, and Clangd)
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    -- Python LSP (Pyright)
-    lspconfig.pyright.setup({
+    -- Define LSP configurations ---------------------------------------------
+    vim.lsp.config["pyright"] = {
       on_attach = on_attach,
-      capabilities = vim.lsp.protocol.make_client_capabilities(),  -- Ensure the capabilities are passed
+      capabilities = capabilities,
       flags = { debounce_text_changes = 150 },
-    })
+    }
 
-    -- C/C++ LSP (clangd)
-    lspconfig.clangd.setup({
+    vim.lsp.config["clangd"] = {
+      cmd = { "clangd", "--header-insertion=never", "--clang-tidy" },
       on_attach = on_attach,
-      capabilities = vim.lsp.protocol.make_client_capabilities(),
-      flags = { debounce_text_changes = 150 },
-    })
+      capabilities = capabilities,
+    }
 
-    lspconfig.omnisharp.setup({
-      on_attach = on_attach, 
-      capabilities = vim.lsp.protocol.make_client_capabilities(),  -- Ensure the capabilities are passed
-      flags = { debounce_text_changes = 150 },
-    })
+    vim.lsp.config["omnisharp"] = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
 
-    lspconfig.ts_ls.setup({
-      on_attach = on_attach, 
-      capabilities = vim.lsp.protocol.make_client_capabilities(),  -- Ensure the capabilities are passed
-      flags = { debounce_text_changes = 150 },
-    })
+    vim.lsp.config["ts_ls"] = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
 
-    lspconfig.cmake.setup({
-      on_attach = on_attach, 
+    vim.lsp.config["cmake"] = {
+      on_attach = on_attach,
       settings = {
-        cmake = {
-          configureArgs = {"-DCMAKE_EXPORT_COMPILE_COMMANDS=YES"},
-        },
+        cmake = { configureArgs = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=YES" } },
       },
-    })
+    }
 
+    -------------------------------------------------------------------------
+    -- Start each installed LSP manually (since setup_handlers is gone)
+    -------------------------------------------------------------------------
+    local mason_lspconfig = require("mason-lspconfig")
+    for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+      local cfg = vim.lsp.config[server]
+      if cfg then vim.lsp.start(cfg) end
+    end
+
+    -------------------------------------------------------------------------
+    -- nvim-cmp setup
+    -------------------------------------------------------------------------
     local cmp = require("cmp")
     cmp.setup({
       sources = cmp.config.sources({
-        { name = "nvim_lsp" },  -- Enable LSP source for autocompletion
+        { name = "nvim_lsp" },
       }),
     })
   end,

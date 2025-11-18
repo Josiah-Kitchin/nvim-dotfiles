@@ -22,6 +22,5 @@ return {
       }
     end,
   },
-  {"voldikss/vim-floaterm"},
   "andrewferrier/wrapping.nvim",
 }

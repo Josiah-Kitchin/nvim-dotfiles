@@ -1,26 +1,17 @@
+
 return {
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   {
-    'https://github.com/Mofiqul/dracula.nvim',
-    name = "dracula",
+    "https://github.com/folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      vim.opt.termguicolors = true,
-      vim.cmd.colorscheme("dracula")
-    end,
+    config = function(plugin)
+      require("tokyonight").setup({
+        transparent = true
+      })
+      vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+      vim.cmd([[colorscheme tokyonight]])
+    end
   }
-
-  -- {
-  --   'https://github.com/f4z3r/gruvbox-material.nvim',
-  --   name = "gruvbox-material",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     vim.opt.termguicolors = true,
-  --     vim.cmd.colorscheme("gruvbox-material")
-  --   end,
-  -- }
-
-    
 }
 

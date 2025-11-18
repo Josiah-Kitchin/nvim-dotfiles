@@ -7,6 +7,10 @@ return {
   },
   config = function()
     local nvimtree = require("nvim-tree")
+
+    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
     -- disable netrw at the very start of your init.lua
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
@@ -41,7 +45,7 @@ return {
       -- window splits
       actions = {
         open_file = {
-          quit_on_open = true,
+          quit_on_open = false,
           window_picker = {
             enable = false,
           },

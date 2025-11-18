@@ -1,5 +1,11 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
+vim.api.nvim_create_autocmd("QuitPre", {
+  callback = function()
+    vim.cmd("silent! FloatermKill!")  -- Kill all running terminals quietly
+  end,
+})
+
 local opt = vim.opt --for conciseness
 
 opt.relativenumber = true
