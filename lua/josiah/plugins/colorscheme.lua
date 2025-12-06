@@ -1,35 +1,13 @@
 
---
--- return {
---   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
---   {
---     "https://github.com/catppuccin/nvim",
---     lazy = false,
---     priority = 1000,
---     config = function(plugin)
---       require("catppuccin").setup({
---                 transparent_background = true,
---                 no_italic = true 
---
---       })
---       vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
---       vim.cmd([[colorscheme catppuccin]])
---     end
---   }
--- }
 return {
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   {
-    "https://github.com/neanias/everforest-nvim",
+    "https://github.com/bluz71/vim-moonfly-colors",
     lazy = false,
     priority = 1000,
     config = function(plugin)
-      require("everforest").setup({
-                background = "hard",
-                transparent_background_level = 1,
-            })
       vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
-      vim.cmd([[colorscheme everforest]])
+      vim.cmd([[colorscheme moonfly]])
     end
   }
 }
