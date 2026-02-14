@@ -14,7 +14,7 @@ return {
     })
 
     -- Common on_attach -------------------------------------------------------
-    local on_attach = function(_, bufnr)
+    local on_attach = function(client, bufnr)
       local opts = { noremap = true, silent = true, buffer = bufnr }
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
       vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
@@ -22,6 +22,8 @@ return {
       vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
       vim.keymap.set("n", "<leader>o", vim.diagnostic.goto_next, opts)
       vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
+
+      client.server_capabilities.semanticTokensProvider = nil
 
       vim.o.updatetime = 500
       vim.api.nvim_create_autocmd("CursorHold", {
