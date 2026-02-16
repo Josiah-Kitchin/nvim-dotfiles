@@ -25,7 +25,7 @@ opt.ignorecase = true
 opt.smartcase = true -- assumes case-sensitive when mixed case in search
 
 -- highlight currently selected line
-opt.cursorline = true
+opt.cursorline = false
 
 -- turn on termguicolors for colorscheme to work
 opt.termguicolors = true

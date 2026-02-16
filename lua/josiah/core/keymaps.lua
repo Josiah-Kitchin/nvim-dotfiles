@@ -32,10 +32,15 @@ keymap.set("n", "<leader>bi", "<cmd>ls<CR>", { desc = "List buffers interactivel
 keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete buffer" })
 
 -- Better window navigation
-keymap.set("n", "<leader>h", "<C-w>h", { desc = "window left" })
-keymap.set("n", "<leader>j", "<C-w>j", { desc = "window down" })
-keymap.set("n", "<leader>k", "<C-w>k", { desc = "window up" })
-keymap.set("n", "<leader>l", "<C-w>l", { desc = "window right" })
+-- keymap.set("n", "<leader>h", "<C-w>h", { desc = "window left" })
+-- keymap.set("n", "<leader>j", "<C-w>j", { desc = "window down" })
+-- keymap.set("n", "<leader>k", "<C-w>k", { desc = "window up" })
+-- keymap.set("n", "<leader>l", "<C-w>l", { desc = "window right" })
+
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "window left" })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "window down" })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "window up" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "window right" })
 
 -- Easy align columns of text
 keymap.set("n", "ga", "<Plug>(EasyAlign)")
@@ -63,6 +68,11 @@ keymap.set("n", "<leader>fs", "<cmd>FzfLua live_grep<CR>", { desc = "Find string
 keymap.set("n", "<leader>t", "<cmd>FloatermToggle<CR>", { desc = "Open floating terminal" })
 -- Normal mode toggle
 keymap.set("t", "<C-t>", "<C-\\><C-n><cmd>FloatermToggle<CR>", { desc = "Toggle terminal (terminal mode)" })
+
+
+
+
+
 
 
 
