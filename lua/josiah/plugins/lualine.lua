@@ -6,7 +6,7 @@ return {
     local lualine = require("lualine")
     local lazy_status = require("lazy.status")
 
-    local custom = require('lualine.themes.retrowave')
+    local custom = require('lualine.themes.dracula')
 
     lualine.setup({
       options = {
@@ -19,7 +19,7 @@ return {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
-            color = { fg = "#f9e2af" },
+            color = { fg = "#000000" },
           },
           "encoding",
           "fileformat",

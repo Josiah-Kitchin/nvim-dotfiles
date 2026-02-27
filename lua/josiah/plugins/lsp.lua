@@ -23,7 +23,7 @@ return {
       vim.keymap.set("n", "<leader>o", vim.diagnostic.goto_next, opts)
       vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
 
-      client.server_capabilities.semanticTokensProvider = nil
+      -- client.server_capabilities.semanticTokensProvider = nil
 
       vim.o.updatetime = 500
       vim.api.nvim_create_autocmd("CursorHold", {
