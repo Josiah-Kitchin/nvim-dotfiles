@@ -6,11 +6,11 @@ return {
     local lualine = require("lualine")
     local lazy_status = require("lazy.status")
 
-    local custom = require('lualine.themes.dracula')
+    local custom = require('lualine.themes.onedark')
 
     lualine.setup({
       options = {
-        theme = custom,
+        theme = "auto",
         globalstatus = true, -- optional, but nice for one bar across splits
       },
 
