@@ -1,10 +1,8 @@
-
 return {
   "nvim-treesitter/nvim-treesitter",
   lazy = false,
   build = ":TSUpdate",
   config = function()
-    local ts = require("nvim-treesitter")
     local languages = {
       "bash",
       "css",
@@ -23,31 +21,53 @@ return {
       "vim",
       "vue",
       "yaml",
+      "tsx",
     }
 
-    ts.setup({})
+    -- Install the parsers
+    require("nvim-treesitter").install(languages)
 
-    -- NOTE: If languages fail to install or compilation hangs,
-    -- ensure 'tree-sitter-cli' is installed (e.g., :MasonInstall tree-sitter-cli).
-    -- If the issue persists, run :checkhealth nvim-treesitter to diagnose.
+    -- Set up filetype detection for React files
+    vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+      pattern = { "*.jsx", "*.tsx" },
+      callback = function(args)
+        if args.file:match("%.jsx$") then
+          vim.bo[args.buf].filetype = "javascriptreact"
+        elseif args.file:match("%.tsx$") then
+          vim.bo[args.buf].filetype = "typescriptreact"
+        end
+      end,
+    })
 
-    -- Use :TSInstall for manuall install languages
-    ts.install(languages)
+    -- Automatically start treesitter for React files
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "javascriptreact", "typescriptreact", "javascript", "typescript" },
+      callback = function()
+        -- Small delay to ensure buffer is ready
+        vim.defer_fn(function()
+          -- This is what worked manually
+          pcall(vim.treesitter.start, 0)
+        end, 10)
+      end,
+    })
 
-    -- Treesitter features for installed languages must be enabled manually
+    -- Also enable for other languages
     vim.api.nvim_create_autocmd("FileType", {
       pattern = languages,
       callback = function()
-        -- Enable native Neovim treesitter highlighting
-        vim.treesitter.start()
+        vim.defer_fn(function()
+          pcall(vim.treesitter.start, 0)
+        end, 10)
+      end,
+    })
 
-        -- Configure code folding
+    -- Configure folding
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = languages,
+      callback = function()
         vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         vim.wo.foldmethod = "expr"
         vim.wo.foldlevel = 99
-
-        -- Enable treesitter-based indentation
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       end,
     })
   end,

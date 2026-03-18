@@ -10,7 +10,7 @@ return {
     -- Mason setup ------------------------------------------------------------
     require("mason").setup()
     require("mason-lspconfig").setup({
-      ensure_installed = { "pyright", "ts_ls", "clangd", "omnisharp", "cmake" },
+      ensure_installed = { "pyright", "ts_ls", "clangd", "omnisharp", "cmake", "html" },
     })
 
     -- Common on_attach -------------------------------------------------------

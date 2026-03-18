@@ -6,11 +6,7 @@ return {
     config = function(plugin)
           local fm = require 'onedark'
          fm.setup {
-            style = 'darker', 
-            -- transparent=true,
-              lualine = {
-                    transparent = true, -- lualine center bar transparency
-                },
+             style = 'darker'
          }
 
          vim.cmd.colorscheme 'onedark'
